@@ -52,9 +52,10 @@ const Home = () => {
             <div className="content">
               <Link to = {`/post/${post.id}`}>
                <h1>{post.title}</h1>
+               </Link>
                <p>{post.desc}</p>
                <button>Read More</button>
-              </Link>
+              
             </div>
           </div>
         ))}
