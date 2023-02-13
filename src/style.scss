@@ -289,7 +289,6 @@ $lightGreen : #b9e7e7;
                 }
                 .editorContainer{
                     height: 300px;
-                    overflow: scroll;
                     border: 1px solid lightgray;
                     .editor{
                       height: 100%;
@@ -318,8 +317,36 @@ $lightGreen : #b9e7e7;
                         font-size: 20px;
                     }
 
-                    label{
+                    .file{
                         text-decoration: underline;
+                        cursor: pointer;
+                    }
+
+                    .buttons{
+                        display: flex;
+                        justify-content: space-between;
+                        :first-child{
+                            cursor: pointer;
+                            color: teal;
+                            background-color: white;
+                            border: 1px solid teal;
+                            padding: 3px 5px;
+                        }
+
+                        :last-child{
+                            cursor: pointer;
+                            color: white;
+                            background-color: teal;
+                            border: 1px solid teal;
+                            padding: 3px 5px;
+                        }
+                    }
+
+                    .cat{
+                        display: flex;
+                        align-items: center;
+                        gap: 2px;
+                        color:teal;
                     }
                 }
             }
