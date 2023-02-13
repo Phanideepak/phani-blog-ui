@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import axios from 'axios'
-import cors from 'cors'
 
 const Register = () => {
   const [inputs,setInputs] = useState({
@@ -9,6 +8,9 @@ const Register = () => {
     "password":"",
     "email":"",
   })
+
+  const [err,setError] = useState(null)
+  const navigate = useNavigate()
 
   const headers = {
     "Content-Type": "application/json;charset=UTF-8",
@@ -25,7 +27,12 @@ const Register = () => {
     const client = axios.create({
       baseURL: "http://localhost:19337/blog" 
     }); 
-    const response = await client.post('/v1/auth/signup',inputs,{headers: headers})
+    try{
+        const response = await client.post('/v1/auth/signup',inputs,{headers: headers})
+        navigate("/login")
+    } catch(err){
+       setError(err.response.data.exception)
+    }
   }
 
   return (
@@ -36,7 +43,7 @@ const Register = () => {
         <input required type="text" placeholder='email' name = 'email' onChange={handleChange}/>
         <input required type="text" placeholder='password' name='password' onChange={handleChange}/>
         <button onClick={handleSubmit}>Register</button>
-        <p>This is an error !</p>
+        {err && <p>{err}</p>}
         <span>Do you have an account? <Link to="/login">Login</Link>
         </span>
       </form>
